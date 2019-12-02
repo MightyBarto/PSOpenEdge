@@ -12,6 +12,8 @@ namespace PSOpenEdge.OpenEdge
         private const string VersionSuffix = "11.5";
 #elif V117
         private const string VersionSuffix = "11.7";
+#elif V121
+        private const string VersionSuffix = "12.1";
 #endif
         private const string _RegKey32 = @"SOFTWARE\PSC\PROGRESS\" + VersionSuffix;
         private const string _RegKey64 = @"SOFTWARE\WOW6432Node\PSC\PROGRESS\" + VersionSuffix;
@@ -37,6 +39,10 @@ namespace PSOpenEdge.OpenEdge
 
         #region --- Methods ---
 
+        /// <summary>
+        /// Returns the path that is stored in the specified key.
+        /// </summary>
+        /// <param name="regKey">the key in the Windows registry.</param>        
         private static string GetVerifiedPathFromRegistry(string regKey)
         {
             if (string.IsNullOrWhiteSpace(regKey))
@@ -49,6 +55,11 @@ namespace PSOpenEdge.OpenEdge
             return dir;
         }
 
+        /// <summary>
+        /// Returns the value for the specified key.
+        /// Determines 32-bit or 64-bit, and get's the key from the related path.
+        /// </summary>
+        /// <param name="key">The key to get the value for.</param>        
         private static string GetRegistryKey(string key)
         {
             //Determin 32 or 64 bit
@@ -64,6 +75,11 @@ namespace PSOpenEdge.OpenEdge
             return value;
         }
 
+        /// <summary>
+        /// Assists in getting the key's valueµ.
+        /// </summary>
+        /// <param name="path">The path to the key.</param>
+        /// <param name="key">The key for which to get the value.</param>        
         private static string GetOsRegistryKey(string path, string key)
         {
             var regEntry = Registry.LocalMachine.OpenSubKey(path, false);

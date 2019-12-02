@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSOpenEdge115", "PSOpenEdge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSOpenEdge117", "PSOpenEdge117.csproj", "{7ED02D67-F489-4F7A-9D31-7DF565A8DB3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSOpenEdge121", "PSOpenEdge121.csproj", "{4DE348D2-0956-4060-8532-E37500C82CBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{7ED02D67-F489-4F7A-9D31-7DF565A8DB3B}.Release|x64.Build.0 = Release|Any CPU
 		{7ED02D67-F489-4F7A-9D31-7DF565A8DB3B}.Release|x86.ActiveCfg = Release|Any CPU
 		{7ED02D67-F489-4F7A-9D31-7DF565A8DB3B}.Release|x86.Build.0 = Release|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Debug|x64.Build.0 = Debug|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Debug|x86.Build.0 = Debug|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Release|x64.ActiveCfg = Release|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Release|x64.Build.0 = Release|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Release|x86.ActiveCfg = Release|Any CPU
+		{4DE348D2-0956-4060-8532-E37500C82CBD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

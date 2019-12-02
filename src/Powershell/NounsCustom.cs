@@ -8,5 +8,6 @@
         public const string OeEnvironment = "OeEnvironment";
         public const string OeVersion = "OeVersion";
         public const string OeUser = "OeUser";
+        public const string OeIndex = "OeIndex";
     }
 }

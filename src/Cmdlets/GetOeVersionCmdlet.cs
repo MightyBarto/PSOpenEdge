@@ -6,7 +6,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets
 {
-    [Cmdlet(VerbsCommon.Get, NounsCustom.OeVersion)]
+    [Cmdlet(VerbsCommon.Get, NounsCustom.Version)]
     [Alias("oeversion")]
     public class GetOeVersionCmdlet : PSOpenEdgeCmdletBase
     {

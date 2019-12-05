@@ -7,7 +7,7 @@ using PSOpenEdge.Powershell;
 namespace PSOpenEdge.Cmdlets.Database
 {
 
-    [Cmdlet(VerbsCustom.Build, NounsCustom.OeIndex)]
+    [Cmdlet(VerbsCustom.Build, NounsCustom.Index)]
     public class BuildIndexesCmdlet : OeDatabaseRelatedCmdlet
     {
         [Parameter]

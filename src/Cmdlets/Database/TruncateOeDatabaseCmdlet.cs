@@ -5,7 +5,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets.Database
 {    
-    [Cmdlet(VerbsCustom.Truncate, NounsCustom.OeDatabase)]
+    [Cmdlet(VerbsCustom.Truncate, NounsCustom.Database)]
     public class TruncateOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
     {
         #region --- Parameters ---

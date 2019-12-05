@@ -6,7 +6,7 @@ using PSOpenEdge.OpenEdge;
 
 namespace PSOpenEdge.Cmdlets.Database
 {
-    [Cmdlet(VerbsCommon.Copy,NounsCustom.OeDatabase)]
+    [Cmdlet(VerbsCommon.Copy,NounsCustom.Database)]
     public class CopyOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
     {
         [Parameter]

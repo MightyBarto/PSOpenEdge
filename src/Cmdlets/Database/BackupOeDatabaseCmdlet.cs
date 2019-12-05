@@ -5,7 +5,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets.Database
 {
-    [Cmdlet(VerbsCustom.Backup, NounsCustom.OeDatabase)]
+    [Cmdlet(VerbsCustom.Backup, NounsCustom.Database)]
     public class BackupOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
     {
         [Parameter]

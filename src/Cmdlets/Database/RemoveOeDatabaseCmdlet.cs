@@ -4,7 +4,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets.Database
 {
-    [Cmdlet(VerbsCommon.Remove, NounsCustom.OeDatabase)]
+    [Cmdlet(VerbsCommon.Remove, NounsCustom.Database)]
     public class RemoveOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
     {
         [Parameter, Alias("y")]

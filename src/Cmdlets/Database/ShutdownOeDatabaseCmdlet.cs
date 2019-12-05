@@ -5,7 +5,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets.Database
 {
-    [Cmdlet(VerbsCustom.Shutdown, NounsCustom.OeDatabase)]
+    [Cmdlet(VerbsCustom.Shutdown, NounsCustom.Database)]
     public class ShutdownOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
     {
         [Parameter, Alias("type")]

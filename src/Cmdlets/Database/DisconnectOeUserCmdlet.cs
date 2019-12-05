@@ -4,7 +4,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets.Database
 {
-    [Cmdlet(VerbsCustom.Disconnect, NounsCustom.OeUser)]
+    [Cmdlet(VerbsCustom.Disconnect, NounsCustom.User)]
     public class DisconnectOeUserCmdlet : OeDatabaseRelatedCmdlet
     {
         [Parameter(Mandatory = true)]

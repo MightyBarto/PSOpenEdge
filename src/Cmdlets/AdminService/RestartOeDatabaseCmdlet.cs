@@ -4,7 +4,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets.AdminService
 {
-    [Cmdlet(VerbsCustom.Restart, NounsCustom.OeDatabase)]
+    [Cmdlet(VerbsCustom.Restart, NounsCustom.Database)]
     public class RestartOeDatabaseCmdlet : OeAdminServerRelatedCmdletBase
     {
         [Parameter(ParameterSetName = "ByName", Mandatory = true)]

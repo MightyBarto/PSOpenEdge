@@ -5,7 +5,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets.Database
 {
-    [Cmdlet(VerbsCustom.Repair, NounsCustom.OeDatabase)]
+    [Cmdlet(VerbsCustom.Repair, NounsCustom.Database)]
     public class RepairOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
     {
         #region --- Parameters ---

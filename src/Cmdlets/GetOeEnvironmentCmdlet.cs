@@ -5,7 +5,7 @@ using OeEnvironment = PSOpenEdge.OpenEdge.OeEnvironment;
 
 namespace PSOpenEdge.Cmdlets
 {
-    [Cmdlet(VerbsCommon.Get, NounsCustom.OeEnvironment)]
+    [Cmdlet(VerbsCommon.Get, NounsCustom.Environment)]
     [Alias("oeenv")]
     public class GetOeEnvironmentCmdlet : PSOpenEdgeCmdletBase
     {

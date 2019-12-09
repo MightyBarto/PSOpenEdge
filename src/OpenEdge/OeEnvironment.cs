@@ -8,6 +8,7 @@ namespace PSOpenEdge.OpenEdge
     internal static class OeEnvironment
     {
         #region --- Constants ---
+
 #if V115
         private const string VersionSuffix = "11.5";
 #elif V117
@@ -15,6 +16,7 @@ namespace PSOpenEdge.OpenEdge
 #elif V121
         private const string VersionSuffix = "12.1";
 #endif
+
         private const string _RegKey32 = @"SOFTWARE\PSC\PROGRESS\" + VersionSuffix;
         private const string _RegKey64 = @"SOFTWARE\WOW6432Node\PSC\PROGRESS\" + VersionSuffix;
 
@@ -61,12 +63,16 @@ namespace PSOpenEdge.OpenEdge
         /// </summary>
         /// <param name="key">The key to get the value for.</param>        
         private static string GetRegistryKey(string key)
-        {
+        {            
+#if V121
+            // In OE 12.1 ther is no 64-bit key.
+            var path = OeEnvironment._RegKey32;
+#else
             //Determin 32 or 64 bit
             var path = System.Environment.Is64BitOperatingSystem
                 ? OeEnvironment._RegKey64
                 : OeEnvironment._RegKey32;
-
+#endif
             //Get registry key
             var value = OeEnvironment.GetOsRegistryKey(path, key);
             if (value == null)

@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace PSOpenEdge.OpenEdge.Database
 {
-    public class OeExtent
+    public class Extent
     {
-        public OeArea Area { get; set; }
+        public Area Area { get; set; }
 
         public int Number { get; set; }
 
         public FileInfo File { get; set; }
 
-        public OeExtent()
+        public Extent()
         { }
 
-        public OeExtent(OeArea area, int number)
+        public Extent(Area area, int number)
             : this()
         {
             this.Area = area;

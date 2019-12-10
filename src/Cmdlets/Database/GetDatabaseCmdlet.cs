@@ -4,7 +4,7 @@ using PSOpenEdge.Powershell;
 namespace PSOpenEdge.Cmdlets.Database
 {
     [Cmdlet(VerbsCommon.Get,NounsCustom.Database)]
-    public class GetOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
+    public class GetDatabaseCmdlet : DatabaseRelatedCmdlet
     {
         protected override void ProcessRecord()
         {

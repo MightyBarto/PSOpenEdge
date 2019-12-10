@@ -5,7 +5,7 @@ using PSOpenEdge.Powershell;
 namespace PSOpenEdge.Cmdlets.Database
 {
     [Cmdlet(VerbsCommon.Remove, NounsCustom.Database)]
-    public class RemoveOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
+    public class RemoveDatabaseCmdlet : DatabaseRelatedCmdlet
     {
         [Parameter, Alias("y")]
         public SwitchParameter NoConfirmation { get; set; }

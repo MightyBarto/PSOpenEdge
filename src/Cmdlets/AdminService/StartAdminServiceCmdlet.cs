@@ -5,7 +5,7 @@ using PSOpenEdge.Powershell;
 namespace PSOpenEdge.Cmdlets.AdminService
 {
     [Cmdlet(VerbsCustom.Start, NounsCustom.AdminServer)]
-    public class StartAdminServerCmdlet : OeAdminServerRelatedCmdletBase
+    public class StartAdminServerCmdlet : AdminServerRelatedCmdletBase
     {
         protected override void ProcessRecord()
         {

@@ -5,7 +5,7 @@ using PSOpenEdge.Powershell;
 namespace PSOpenEdge.Cmdlets.AdminService
 {
     [Cmdlet(VerbsCustom.Stop, NounsCustom.Database)]
-    public class StopOeDatabaseCmdlet : OeAdminServerRelatedCmdletBase
+    public class StopDatabaseCmdlet : AdminServerRelatedCmdletBase
     {
         [Parameter(ParameterSetName = "ByName", Mandatory = true)]
         public string Name { get; set; }

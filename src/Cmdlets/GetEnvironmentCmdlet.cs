@@ -7,7 +7,7 @@ namespace PSOpenEdge.Cmdlets
 {
     [Cmdlet(VerbsCommon.Get, NounsCustom.Environment)]
     [Alias("oeenv")]
-    public class GetOeEnvironmentCmdlet : PSOpenEdgeCmdletBase
+    public class GetEnvironmentCmdlet : PSOpenEdgeCmdletBase
     {
         protected override void ProcessRecord()
         {           

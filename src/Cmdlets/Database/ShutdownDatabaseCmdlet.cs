@@ -6,7 +6,7 @@ using PSOpenEdge.Powershell;
 namespace PSOpenEdge.Cmdlets.Database
 {
     [Cmdlet(VerbsCustom.Shutdown, NounsCustom.Database)]
-    public class ShutdownOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
+    public class ShutdownDatabaseCmdlet : DatabaseRelatedCmdlet
     {
         [Parameter, Alias("type")]
         public DatabaseShutdownTypes ShutdownType { get; set; } = DatabaseShutdownTypes.Unconditional;

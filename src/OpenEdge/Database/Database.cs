@@ -2,7 +2,7 @@
 
 namespace PSOpenEdge.OpenEdge.Database
 {
-    public class OeDatabase
+    public class Database
     {
         #region --- Properties ---
 
@@ -16,10 +16,10 @@ namespace PSOpenEdge.OpenEdge.Database
 
         #region --- Constructors ---
 
-        public OeDatabase()
+        public Database()
         { }
 
-        public OeDatabase(string dbFile)
+        public Database(string dbFile)
         {
             if (dbFile == null)
                 throw new ArgumentNullException(nameof(dbFile));

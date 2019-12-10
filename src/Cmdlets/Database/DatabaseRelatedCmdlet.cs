@@ -6,12 +6,12 @@ using PSOpenEdge.OpenEdge.Database;
 
 namespace PSOpenEdge.Cmdlets.Database
 {
-    public abstract class OeDatabaseRelatedCmdlet : PSOpenEdgeCmdletBase
+    public abstract class DatabaseRelatedCmdlet : PSOpenEdgeCmdletBase
     {
         #region --- Parameters ---
 
         [Parameter(ValueFromPipeline = true, ParameterSetName = ParamSetPipeline)]
-        public OeDatabase FromPipeline { get; set; }
+        public OpenEdge.Database.Database FromPipeline { get; set; }
 
         private string _Path = null;
         [Parameter]
@@ -40,7 +40,7 @@ namespace PSOpenEdge.Cmdlets.Database
         /// - Through the 'Name' parameter (supports wildcards). 
         /// </summary>
         /// <returns>List of Databases</returns>
-        protected virtual IEnumerable<OeDatabase> GetDatabases()
+        protected virtual IEnumerable<OpenEdge.Database.Database> GetDatabases()
         {
             var db = this.FromPipeline;
             if (db != null)
@@ -58,7 +58,7 @@ namespace PSOpenEdge.Cmdlets.Database
 
             this.WriteVerbose($"Path: '{path}' Name: '{name}'");
 
-            foreach (var database in OeDatabaseRelatedCmdlet.GetDatabases(path, name))
+            foreach (var database in DatabaseRelatedCmdlet.GetDatabases(path, name))
             {
                 if (database == null)
                     continue;
@@ -73,7 +73,7 @@ namespace PSOpenEdge.Cmdlets.Database
         /// <param name="path">The directory that the .db files reside in.</param>
         /// <param name="name">The name of the databases, supports wildcards.</param>
         /// <returns>a new <see cref="IEnumerable{T}"/></returns>
-        protected static IEnumerable<OeDatabase> GetDatabases(string path, string name)
+        protected static IEnumerable<OpenEdge.Database.Database> GetDatabases(string path, string name)
         {
             if (path == null)
                 yield break;
@@ -94,7 +94,7 @@ namespace PSOpenEdge.Cmdlets.Database
                 if (!wildCard.IsMatch(dbName))
                     continue;
 
-                yield return new OeDatabase
+                yield return new OpenEdge.Database.Database
                 {
                     FileName = file.Name,
                     Path = dir.FullName,

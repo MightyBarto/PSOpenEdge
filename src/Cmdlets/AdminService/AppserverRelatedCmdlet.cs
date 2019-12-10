@@ -4,7 +4,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets.AdminService
 {
-    public abstract class OeAppserverRelatedCmdlet : OeAdminServerRelatedCmdletBase
+    public abstract class AppserverRelatedCmdlet : AdminServerRelatedCmdletBase
     {
         #region --- Properties ---
 

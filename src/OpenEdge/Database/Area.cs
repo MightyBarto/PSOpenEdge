@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace PSOpenEdge.OpenEdge.Database
 {
-    public class OeArea
+    public class Area
     {        
-        public OeDatabase Database { get; set; }
+        public Database Database { get; set; }
 
         public AreaType Type { get; set; }
 
         public string Name { get; set; }
 
-        public IList<OeExtent> Extents { get; } = new List<OeExtent>();
+        public IList<Extent> Extents { get; } = new List<Extent>();
 
-        public OeArea()
+        public Area()
         {
 
         }
 
-        public OeArea(OeDatabase database, string name)
+        public Area(Database database, string name)
             : this()
         {
             this.Database = database;

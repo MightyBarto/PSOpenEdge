@@ -8,7 +8,7 @@ namespace PSOpenEdge.Cmdlets
 {
     [Cmdlet(VerbsCommon.Get, NounsCustom.Version)]
     [Alias("oeversion")]
-    public class GetOeVersionCmdlet : PSOpenEdgeCmdletBase
+    public class GetVersionCmdlet : PSOpenEdgeCmdletBase
     {
         protected override void ProcessRecord()
         {

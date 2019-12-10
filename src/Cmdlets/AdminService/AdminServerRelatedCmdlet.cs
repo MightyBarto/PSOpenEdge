@@ -4,7 +4,7 @@ using PSOpenEdge.Powershell;
 
 namespace PSOpenEdge.Cmdlets.AdminService
 {
-    public class OeAdminServerRelatedCmdletBase : PSOpenEdgeCmdletBase
+    public class AdminServerRelatedCmdletBase : PSOpenEdgeCmdletBase
     {
         [Parameter(ParameterSetName = ParamSetsCustom.Default)]
         [Parameter(ParameterSetName = ParamSetsCustom.WithAuthentication)]

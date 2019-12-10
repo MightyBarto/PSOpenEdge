@@ -8,7 +8,7 @@ namespace PSOpenEdge.Cmdlets.Database
 {
 
     [Cmdlet(VerbsCustom.Build, NounsCustom.Index)]
-    public class BuildIndexesCmdlet : OeDatabaseRelatedCmdlet
+    public class BuildIndexesCmdlet : DatabaseRelatedCmdlet
     {
         [Parameter]
         public IndexBuildTypes BuildTypes { get; set; } = IndexBuildTypes.All;

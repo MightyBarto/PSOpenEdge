@@ -5,7 +5,7 @@ using PSOpenEdge.Powershell;
 namespace PSOpenEdge.Cmdlets.AdminService
 {
     [Cmdlet(VerbsCommon.Get, NounsCustom.AppServer)]
-    public class GetAppServerCmdlet : OeAppserverRelatedCmdlet
+    public class GetAppServerCmdlet : AppserverRelatedCmdlet
     {
         protected override void ProcessRecord()
         {

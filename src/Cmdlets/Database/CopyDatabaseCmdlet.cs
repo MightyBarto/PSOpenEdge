@@ -7,7 +7,7 @@ using PSOpenEdge.OpenEdge;
 namespace PSOpenEdge.Cmdlets.Database
 {
     [Cmdlet(VerbsCommon.Copy,NounsCustom.Database)]
-    public class CopyOeDatabaseCmdlet : OeDatabaseRelatedCmdlet
+    public class CopyDatabaseCmdlet : DatabaseRelatedCmdlet
     {
         [Parameter]
         [Alias("dpath")]

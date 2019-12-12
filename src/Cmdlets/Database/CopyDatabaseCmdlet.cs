@@ -6,23 +6,23 @@ using PSOpenEdge.OpenEdge;
 
 namespace PSOpenEdge.Cmdlets.Database
 {
-    [Cmdlet(VerbsCommon.Copy,NounsCustom.Database)]
+    [Cmdlet(VerbsCommon.Copy, NounsCustom.Database)]
     public class CopyDatabaseCmdlet : DatabaseRelatedCmdlet
     {
-        [Parameter]
-        [Alias("dpath")]
+        [Parameter, Alias("dpath")]
         public string DestinationPath { get; set; }
 
-        [Parameter]
-        [Alias("dname")]
+        [Parameter, Alias("dname")]
         public string DestinationName { get; set; }
 
-        [Parameter]        
+        [Parameter]
         public SwitchParameter Silent { get; set; }
 
-        [Parameter]
-        [Alias("newguid")]
+        [Parameter, Alias("newguid")]
         public SwitchParameter NewInstance { get; set; }
+
+        [Parameter, Alias("copyst")]
+        public SwitchParameter CopyStructureFile { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -56,12 +56,20 @@ namespace PSOpenEdge.Cmdlets.Database
 
             //Process
             foreach (var db in databases)
-            {               
+            {
                 //Determine source and target
                 var sourceDb = System.IO.Path.Combine(sourcePath, db.Name);
                 var targetDb = string.IsNullOrWhiteSpace(targetName)
                     ? db.Name
                     : targetName;
+
+                if (this.CopyStructureFile)
+                {
+                    var targetSt = System.IO.Path.Combine(destination, targetDb + ".st");
+
+                    this.WriteVerbose($"Copy {sourceDb}.st to {targetSt}");
+                    System.IO.File.Copy(sourceDb + ".st", targetSt);
+                }
 
                 this.WriteVerbose($"[COPY] {sourceDb} => {targetDb}");
 

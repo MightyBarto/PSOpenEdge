@@ -10,6 +10,11 @@ namespace PSOpenEdge.OpenEdge
         public string Command { get; }
         public string WorkingDirectory { get; private set; }               
 
+        /// <summary>
+        /// Used to pass in arguments through std input after the process has started.
+        /// </summary>
+        /// <typeparam name="string">List inf arguments to input sequentially.</typeparam>
+        /// <returns></returns>
         public IList<string> CustomInputs { get; } = new List<string>();
 
         public OeCommand(string command, string workingDirectory)

@@ -16,6 +16,9 @@ namespace PSOpenEdge.Cmdlets.Database
         [Parameter]
         public string TableName { get; set; }
 
+        [Parameter]
+        public AiToggleModes AiToggleMode { get; set; } = AiToggleModes.None;
+
         protected override void ProcessRecord()
         {
             var path = this.GetFullPath();
@@ -32,12 +35,25 @@ namespace PSOpenEdge.Cmdlets.Database
                 args.Append(' ').Append(this.TableName);
 
             foreach (var db in this.GetDatabases())
-            {
+            {       
+                // Switch off ai when requested         
+                if(this.AiToggleMode != AiToggleModes.None)
+                {
+                    this.WriteVerbose($"Disable after-imaging for {db.Name}");
+                    new OeCommand(OeCommands.RfUtil, path).Run($"{db.Name} -C aimage end");
+                }
+
                 this.WriteVerbose($"{OeCommands.ProUtil} {db.Name} {args}");
                 new OeCommand(OeCommands.ProUtil, path).Run($"{db.Name} {args}");
-            }
 
+                if(this.AiToggleMode == AiToggleModes.Toggle)
+                {
+                    this.WriteVerbose($"Marking {db.Name} as backed up. Please backup this database.");
+                    new OeCommand(OeCommands.RfUtil, path).Run($"{db.Name} -C mark backedup");
+                    this.WriteVerbose($"Enable after-imaging for {db.Name}");
+                    new OeCommand(OeCommands.RfUtil, path).Run($"{db.Name} -C aimage begin");              
+                }
+            }
         }
     }
-
 }

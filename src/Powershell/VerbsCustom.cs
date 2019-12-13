@@ -11,6 +11,7 @@ namespace PSOpenEdge.Powershell
         public const string Truncate = "Truncate";
         public const string Disconnect = "Disconnect";
         public const string Backup = "Backup";
+        public const string Restore = "Restore";
         public const string Build = "Build";
     }
 }

@@ -46,7 +46,7 @@ namespace PSOpenEdge.Cmdlets.Database
                 this.WriteVerbose($"{OeCommands.ProUtil} {db.Name} {args}");
                 new OeCommand(OeCommands.ProUtil, path).Run($"{db.Name} {args}");
 
-                if(this.AiToggleMode == AiToggleModes.Toggle)
+                if(this.AiToggleMode == AiToggleModes.OffAndOn)
                 {
                     this.WriteVerbose($"Marking {db.Name} as backed up. Please backup this database.");
                     new OeCommand(OeCommands.RfUtil, path).Run($"{db.Name} -C mark backedup");

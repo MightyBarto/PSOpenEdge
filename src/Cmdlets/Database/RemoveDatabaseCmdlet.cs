@@ -7,14 +7,14 @@ namespace PSOpenEdge.Cmdlets.Database
     [Cmdlet(VerbsCommon.Remove, NounsCustom.Database)]
     public class RemoveDatabaseCmdlet : DatabaseRelatedCmdlet
     {
-        [Parameter, Alias("y")]
-        public SwitchParameter NoConfirmation { get; set; }
+        [Parameter, Alias("y","force","confirm")]
+        public SwitchParameter NoConfirmationRequired { get; set; }
 
         protected override void ProcessRecord()
         {
             var command = new OeCommand(OeCommands.ProDel, this.GetFullPath());            
 
-            if(this.NoConfirmation)
+            if(this.NoConfirmationRequired)
                 command.CustomInputs.Add("y");
 
             foreach (var db in this.GetDatabases())

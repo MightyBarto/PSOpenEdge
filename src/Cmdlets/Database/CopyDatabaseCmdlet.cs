@@ -68,7 +68,7 @@ namespace PSOpenEdge.Cmdlets.Database
                     var targetSt = System.IO.Path.Combine(destination, targetDb + ".st");
 
                     this.WriteVerbose($"Copy {sourceDb}.st to {targetSt}");
-                    System.IO.File.Copy(sourceDb + ".st", targetSt);
+                    System.IO.File.Copy(sourceDb + ".st", targetSt, true);
                 }
 
                 this.WriteVerbose($"[COPY] {sourceDb} => {targetDb}");

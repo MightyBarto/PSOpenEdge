@@ -2,3 +2,4 @@
 /bin/
 
 *.psd1
+/scripts/Publish-Modules.ps1

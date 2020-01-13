@@ -4,16 +4,11 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
-            "command" : "dotnet",
+            "label": "Build Debug",
+            "command" : "pwsh",
             "type": "shell",
             "args": [                
-                    "build",                
-                    "PSOpenEdge.sln",
-                    // Ask dotnet build to generate full paths for file names.
-                    "/property:GenerateFullPaths=true",
-                    // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-                    "/consoleloggerparameters:NoSummary",
+                    "./scripts/Build.ps1",
                 ],
                 "group": "build",
                 "presentation": {
@@ -22,18 +17,12 @@
                 "problemMatcher": "$msCompile"            
         },
         {
-            "label": "release",
-            "command" : "dotnet",
+            "label": "Build Release",
+            "command" : "pwsh",
             "type": "shell",
             "args": [                
-                    "build",                
-                    "PSOpenEdge.sln",
-                    "--configuration",
-                    "Release",
-                    // Ask dotnet build to generate full paths for file names.
-                    "/property:GenerateFullPaths=true",
-                    // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-                    "/consoleloggerparameters:NoSummary",
+                    "./scripts/Build.ps1",
+                    "-release"
                 ],
                 "group": "build",
                 "presentation": {
@@ -41,27 +30,5 @@
                 },
                 "problemMatcher": "$msCompile"            
         },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "shell",
-            "args": [
-                "publish",
-                "PSOpenEdge.sln",
-                "--configuration",
-                "Release",
-                // Ask dotnet build to generate full paths for file names.
-                "/property:GenerateFullPaths=true",
-                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-                "/consoleloggerparameters:NoSummary",
-            ],
-            "group": "build",
-            "presentation": {
-                "reveal": "silent"
-            },
-            "problemMatcher": "$msCompile"  
-
-        }
-
     ]
 }

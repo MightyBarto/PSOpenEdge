@@ -17,3 +17,22 @@ See also the LICENSE file.
 - 11.7
 - 12.1
 
+## Features
+
+Emphasis is on productivity. 
+I try to achieve this the following ways:
+* Lauch commands against multiple targets. For example all database related commands use the following selectors:
+  ** -Path: The Path/Directory/Folder in which to search for databases
+  ** -Name: The name of the database. supports wildcards.
+* Convenient default values. For example:
+  ** When not specifying the -Path parameter the current directory is used.
+  ** When not specifying the -Name parameter, * is used, selecting all databases in -Path.
+* Location-free operation. 
+  You can lauch commands anywhere. The Cmdlets will set the correct working directory if needed. 
+  Example: 
+  The following command: Repair-OeDatabase -Path C:\Database 
+  Will perform a prostrct repair on all databases in the C:\Database directory regardless of the current working directory.
+
+
+
+

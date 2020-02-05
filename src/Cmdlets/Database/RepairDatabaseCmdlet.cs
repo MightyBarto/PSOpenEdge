@@ -15,7 +15,6 @@ namespace PSOpenEdge.Cmdlets.Database
 
         #endregion --- Parameters ---
 
-
         protected override void ProcessRecord()
         {
             var path = this.GetFullPath();

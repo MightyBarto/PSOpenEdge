@@ -1,6 +1,6 @@
 
 param(
-    [Switch] $release = $false
+    [Switch] $Release = $false
 )
 
 # Definitions
@@ -8,7 +8,7 @@ $version = "2.0.0.1";
 
 # Perform build 
 
-if ($release)
+if ($Release)
 {
     Write-Host "Performing RELEASE build";
     dotnet build -c release PSOpenEdge.sln -p:Version=$version;

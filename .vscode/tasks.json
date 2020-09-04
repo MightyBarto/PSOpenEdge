@@ -3,7 +3,7 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
-        {
+        {            
             "label": "Build Debug",
             "command" : "pwsh",
             "type": "shell",
@@ -30,5 +30,32 @@
                 },
                 "problemMatcher": "$msCompile"            
         },
+        {
+            "label": "Update packages",
+            "command": "pwsh",
+            "type": "shell",
+            "args": [
+                "./scripts/UpdatePackages.ps1"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"  
+        },
+        {
+            "label": "Deploy modules Debug",
+            "dependsOn": "Build Debug",
+            "command": "pwsh",
+            "type": "shell",
+            "args": [
+                "./scripts/Deploy-Debug.ps1"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"  
+        }
     ]
 }

@@ -13,5 +13,7 @@ namespace PSOpenEdge.OpenEdge
         public const string ProShut = "proshut.bat";
         public const string ProBkup = "probkup.bat";
         public const string RfUtil = "rfutil.bat";
+        public const string Mbpro = "mbpro.bat";
+        public const string Bpro = "bpro.bat";
     }
 }

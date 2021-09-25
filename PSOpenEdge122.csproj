@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>       
-    <DefineConstants>V121</DefineConstants>
+    <DefineConstants>V122</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="src/Templates/ABL/GetTableInfo.p" />
+    <EmbeddedResource Include="ablprocedures/*.r" />
+    <!-- <EmbeddedResource Include="ablprocedures/DumpSequences.r" />
+    <EmbeddedResource Include="ablprocedures/DumpTables.r" /> -->
   </ItemGroup>
 
 </Project>

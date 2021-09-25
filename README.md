@@ -15,7 +15,7 @@ See also the LICENSE file.
 ## Contains tools for following OpenEdge versions
 - 11.5
 - 11.7
-- 12.1
+- 12.2
 
 ## Features
 

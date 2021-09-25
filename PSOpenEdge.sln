@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSOpenEdge115", "PSOpenEdge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSOpenEdge117", "PSOpenEdge117.csproj", "{7ED02D67-F489-4F7A-9D31-7DF565A8DB3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSOpenEdge121", "PSOpenEdge121.csproj", "{4DE348D2-0956-4060-8532-E37500C82CBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSOpenEdge122", "PSOpenEdge122.csproj", "{4DE348D2-0956-4060-8532-E37500C82CBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

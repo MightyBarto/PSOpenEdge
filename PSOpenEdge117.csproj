@@ -10,8 +10,8 @@
     <PackageReference Include="System.Management.Automation" Version="6.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!-- <ItemGroup>
     <EmbeddedResource Include="src/Templates/ABL/GetTableInfo.p" />
-  </ItemGroup>
+  </ItemGroup> -->
 
 </Project>

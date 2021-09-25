@@ -14,7 +14,9 @@ namespace PSOpenEdge.OpenEdge
 #elif V117
         private const string VersionSuffix = "11.7";
 #elif V121
-        private const string VersionSuffix = "12.1";
+        private const string VersionSuffix = "12.1";        
+#elif V122
+        private const string VersionSuffix = "12.2";
 #endif
 
         private const string _RegKey32 = @"SOFTWARE\PSC\PROGRESS\" + VersionSuffix;
@@ -64,8 +66,8 @@ namespace PSOpenEdge.OpenEdge
         /// <param name="key">The key to get the value for.</param>        
         private static string GetRegistryKey(string key)
         {            
-#if V121
-            // In OE 12.1 ther is no 64-bit key.
+#if V122
+            // In OE 12.2 there is no 64-bit key.
             var path = OeEnvironment._RegKey32;
 #else
             //Determin 32 or 64 bit

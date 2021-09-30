@@ -24,7 +24,7 @@ namespace PSOpenEdge.Common
                 throw new ArgumentNullException(nameof(procedureName));
 
             procedureName = procedureName.Replace(".p", ".r");
-            var procedure = LoadResourceAsBinary("ablprocedures." + procedureName);
+            var procedure = LoadResourceAsBinary($"ablprocedures.{OeEnvironment.VersionCode}.{procedureName}");
 
             var assemblyName = AblProcedureFactory.AssemblyName;    
             var folder = Path.Combine(OeEnvironment.WRK, assemblyName);

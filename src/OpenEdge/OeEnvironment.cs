@@ -7,16 +7,18 @@ namespace PSOpenEdge.OpenEdge
 {
     internal static class OeEnvironment
     {
-        #region --- Constants ---
-
 #if V115
         private const string VersionSuffix = "11.5";
+        public const string VersionCode = "v115";
 #elif V117
         private const string VersionSuffix = "11.7";
+        public const string VersionCode = "v117";
 #elif V121
         private const string VersionSuffix = "12.1";        
+        public const string VersionCode = "v121";
 #elif V122
         private const string VersionSuffix = "12.2";
+        public const string VersionCode = "v122";
 #endif
 
         private const string _RegKey32 = @"SOFTWARE\PSC\PROGRESS\" + VersionSuffix;
@@ -27,10 +29,6 @@ namespace PSOpenEdge.OpenEdge
         private const string _WrkKey = "WorkPath";
         private const string _OemWrkKey = "oemWorkPath";
 
-        #endregion --- Constants ---
-
-        #region --- Properties ---
-
         public static string DLC => OeEnvironment.GetVerifiedPathFromRegistry(OeEnvironment._DlcKey);
 
         public static string WRK => OeEnvironment.GetVerifiedPathFromRegistry(OeEnvironment._WrkKey);
@@ -38,10 +36,6 @@ namespace PSOpenEdge.OpenEdge
         public static string OeMgmt => OeEnvironment.GetVerifiedPathFromRegistry(OeEnvironment._OemDlcKey);
 
         public static string WrkOeMgmt => OeEnvironment.GetVerifiedPathFromRegistry(OeEnvironment._OemWrkKey);
-
-        #endregion --- Properties ---
-
-        #region --- Methods ---
 
         /// <summary>
         /// Returns the path that is stored in the specified key.
@@ -93,7 +87,5 @@ namespace PSOpenEdge.OpenEdge
             var regEntry = Registry.LocalMachine.OpenSubKey(path, false);
             return regEntry?.GetValue(key)?.ToString();
         }
-       
-        #endregion --- Methods ---
     }
 }

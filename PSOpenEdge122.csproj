@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="ablprocedures/*.r" />
-    <!-- <EmbeddedResource Include="ablprocedures/DumpSequences.r" />
-    <EmbeddedResource Include="ablprocedures/DumpTables.r" /> -->
+    <EmbeddedResource Include="ablprocedures/v122/*.r" />
   </ItemGroup>
 
 </Project>

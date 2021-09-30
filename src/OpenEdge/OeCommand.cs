@@ -6,9 +6,15 @@ using System.IO;
 namespace PSOpenEdge.OpenEdge
 {
     internal class OeCommand
-    {        
+    {
         public string Command { get; }
-        public string WorkingDirectory { get; private set; }               
+        public string WorkingDirectory { get; private set; }
+
+        /// <summary>
+        /// When true, console output is suppressed.
+        /// </summary>
+        /// <value></value>
+        public bool IsSilent { get; set; }
 
         /// <summary>
         /// Used to pass in arguments through std input after the process has started.
@@ -17,17 +23,18 @@ namespace PSOpenEdge.OpenEdge
         /// <returns></returns>
         public IList<string> CustomInputs { get; } = new List<string>();
 
-        public OeCommand(string command, string workingDirectory)
+        public OeCommand(string command, string workingDirectory, bool isSilent = false)
         {
             this.Command = command;
             this.WorkingDirectory = workingDirectory;
+            this.IsSilent = isSilent;
         }
 
-        public OeCommand(string command, DirectoryInfo workingDirectory = null)
-            : this(command, workingDirectory?.FullName)
+        public OeCommand(string command, DirectoryInfo workingDirectory = null, bool isSilent = false)
+            : this(command, workingDirectory?.FullName, isSilent)
         { }
 
-        public void Run(params string [] args)
+        public void Run(params string[] args)
         {
             this.PrintDebugInfo(args);
 
@@ -47,11 +54,11 @@ namespace PSOpenEdge.OpenEdge
                         ["DLC"] = OeEnvironment.DLC,
                         ["PATH"] = this.GetExtendedPath(),
                     },
-                   
+
                     UseShellExecute = false,
-                    //RedirectStandardOutput = true,                    
+                    RedirectStandardOutput = this.IsSilent
                 },
-            };            
+            };
 
             process.Start();
 
@@ -69,7 +76,7 @@ namespace PSOpenEdge.OpenEdge
         private string GetExtendedPath() =>
             $"{Path.Combine(OeEnvironment.DLC, "bin")}{Path.PathSeparator}{Environment.GetEnvironmentVariable("PATH")}";
 
-        private string GetArgumentString(IEnumerable<string> arguments) => 
+        private string GetArgumentString(IEnumerable<string> arguments) =>
             arguments == null
             ? null
             : string.Join(" ", arguments);
@@ -88,7 +95,7 @@ namespace PSOpenEdge.OpenEdge
         {
             Console.WriteLine($"DLC: {OeEnvironment.DLC}");
             Console.WriteLine($"WRK: {OeEnvironment.WRK}");
-            Console.WriteLine($"WorkingDirectory: {this.GetActualWorkingDirectory()}");            
+            Console.WriteLine($"WorkingDirectory: {this.GetActualWorkingDirectory()}");
 
             Console.WriteLine($"Command: {this.GetCommandFullName()}");
             Console.WriteLine($"Arguments: {this.GetArgumentString(arguments)}");

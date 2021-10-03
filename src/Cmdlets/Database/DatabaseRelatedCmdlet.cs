@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using PSOpenEdge.Common;
 using PSOpenEdge.OpenEdge;
 using PSOpenEdge.OpenEdge.Database;
-using PSOpenEdge.OpenEdge.Model;
 
 namespace PSOpenEdge.Cmdlets.Database
 {
@@ -110,66 +109,72 @@ namespace PSOpenEdge.Cmdlets.Database
         /// <returns></returns>
         protected IEnumerable<DatabaseTable> GetDatabaseTables(OpenEdge.Database.Database db, string tempDir = null, bool isSingleUser = false, string tableName = "*")
         {
-            #if DEBUG
-            Console.WriteLine($"{nameof(GetDatabaseTables)} {db}");
-            Console.WriteLine($"TempDir: {tempDir}");
-            Console.WriteLine($"SinbleUser: {isSingleUser}");
-            Console.WriteLine($"TableName: {tableName}");
-            #endif
+            // Use a cumstom procedure to get the tables in the database
+            // This procedure will return all (non VST) tables in the database.
+            // It is up to this method to apply filtering.
+            var tables = this.CustomProcedure<DatabaseTableJson>(db, "DumpTables.p", tempDir, isSingleUser);
 
+            // Initialize the wildcard pattern.
+            if (!tableName.EndsWith("*"))
+                tableName = tableName + "*";
+
+            var wildcard = new WildcardPattern(tableName);
+
+            // Loop the tables, assign the databbase, and yield each table.
+            foreach (var table in tables.Tables)
+            {
+                table.Database = db;
+
+                if (!wildcard.IsMatch(table.Name))
+                    continue;
+
+                yield return table;
+            }
+        }
+
+        private T CustomProcedure<T>(PSOpenEdge.OpenEdge.Database.Database db, string procedure, string tempDir = null, bool isSingleUser = false)
+        {
             db = db ?? throw new ArgumentNullException(nameof(db));
+
+            if (string.IsNullOrWhiteSpace(procedure))
+                throw new ArgumentNullException(nameof(db));
 
             // Get the appropriate procedure. Which is an embedded resource.
             // AblProcedureFactory will place it in the temp dir and return the full path.
-            var ablProc = AblProcedureFactory.GetAblProcedure("DumpTables.p");
+            var ablProc = AblProcedureFactory.GetAblProcedure(procedure);
             var guid = Guid.NewGuid();
             var path = this.GetFullPath();
             tempDir = string.IsNullOrWhiteSpace(tempDir)
                         ? OeEnvironment.WRK
                         : tempDir;
-
-            if(!tableName.EndsWith("*"))
-                tableName = tableName + "*";
-
-            var wildcard = new WildcardPattern(tableName);
-
-            // command to be executed:
-            // mbpro -db <db> -p <proc> -param "<guid>" -T <temp>    
-
-            var command = isSingleUser 
-                            ? OeCommands.Bpro 
-                            : OeCommands.Mbpro;
-
-            // Dump the tables to json file to the temp dir
-            // will save as follows: <temp>\<guid>.<dbname>.tables.json                
-            new OeCommand(command, path, isSilent: true).Run($"-db {db.Name} -p {ablProc} -param \"{guid}\" -T {tempDir}");
-
-            // Read the generated file into an object    
-            // The file where the .p will dump the tables
-            var tablesFile = System.IO.Path.Combine(tempDir,$"{guid}.{db.Name}.tables.json");                
-            var tables = default(DatabaseTableJson);
+            var dumpFile = System.IO.Path.Combine(tempDir, $"{guid}.{db.Name}.tables.json");
 
             try
             {
-                var tablesJson = File.ReadAllText(tablesFile);
-                tables = JsonConvert.DeserializeObject<DatabaseTableJson>(tablesJson);
+                // command to be executed:
+                // (m)bpro -db <db> -p <proc> -param "<guid>" -T <temp>    
+                var command = isSingleUser
+                                ? OeCommands.Bpro
+                                : OeCommands.Mbpro;
+
+                // Run custom procedure. Which will dump data in a file according to the guid.
+                // will save as follows: <temp>\<guid>.<dbname>.tables.json                
+                new OeCommand(command, path, isSilent: true).Run($"-db {db.Name} -p {ablProc} -param \"{guid}\" -T {tempDir}");
+
+                // Read the generated file into an object    
+                // The file where the .p will dump the tables                
+                var json = File.ReadAllText(dumpFile);
+                return JsonConvert.DeserializeObject<T>(json);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.Error.WriteLine(ex);
+                return default(T);
             }
             finally
             {
-                if(File.Exists(tablesFile))
-                    File.Delete(tablesFile);
-            }
-            
-            foreach(var table in tables.Tables)
-            {
-                if(!wildcard.IsMatch(table.Name))
-                    continue;
-
-                yield return table;
+                if (File.Exists(dumpFile))
+                    File.Delete(dumpFile);
             }
         }
 

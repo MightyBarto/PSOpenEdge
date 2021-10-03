@@ -1,10 +1,14 @@
 
 using Newtonsoft.Json;
 
-namespace PSOpenEdge.OpenEdge.Model
+namespace PSOpenEdge.OpenEdge.Database
 {
     public class DatabaseTable
     {
+
+        [JsonIgnore]
+        public Database Database { get; set; }
+
         [JsonProperty("schemaName")]
         public string SchemaName { get; set; }
 

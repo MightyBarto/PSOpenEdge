@@ -1,11 +1,5 @@
 using System.Management.Automation;
 using PSOpenEdge.Powershell;
-using PSOpenEdge.OpenEdge;
-using System;
-using PSOpenEdge.Common;
-using System.IO;
-using Newtonsoft.Json;
-using PSOpenEdge.OpenEdge.Model;
 
 namespace PSOpenEdge.Cmdlets.Database.Custom
 {

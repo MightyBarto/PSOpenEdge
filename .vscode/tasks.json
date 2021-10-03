@@ -42,20 +42,6 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"  
-        },
-        {
-            "label": "Deploy modules Debug",
-            "dependsOn": "Build Debug",
-            "command": "pwsh",
-            "type": "shell",
-            "args": [
-                "./scripts/Deploy-Debug.ps1"
-            ],
-            "group": "build",
-            "presentation": {
-                "reveal": "silent"
-            },
-            "problemMatcher": "$msCompile"  
         }
     ]
 }

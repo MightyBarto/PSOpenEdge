@@ -5,7 +5,7 @@ param(
 
 # Definitions
 $version = "2.0.0.1"
-$outputDir = "/mnt/d/Tools/Powershell/Modules/PSOpenEdge"
+$outputDir = "D:\Tools\Powershell\Modules\PSOpenEdge"
 
 # Perform build 
 

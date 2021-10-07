@@ -11,6 +11,7 @@
         public const string AppServer = "OeAppServer";
         public const string Database = "OeDatabase";
         public const string Table = "OeDatabaseTable";
+        public const string Tenant = "OeDatabaseTenant";
         public const string Backup = "OeBackup";
         public const string Environment = "OeEnvironment";
         public const string Version = "OeVersion";

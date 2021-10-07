@@ -104,7 +104,7 @@ namespace PSOpenEdge.Cmdlets.Database
 
         /// <summary>
         /// Loads the requested tables from argument database.
-        /// Allows for a lambda expression to apply custom filtering.
+        /// Allows for custom filtering
         /// </summary>
         /// <returns></returns>
         protected IEnumerable<DatabaseTable> GetDatabaseTables(OpenEdge.Database.Database db, string tempDir = null, bool isSingleUser = false, string tableName = "*")
@@ -129,6 +129,37 @@ namespace PSOpenEdge.Cmdlets.Database
                     continue;
 
                 yield return table;
+            }
+        }
+
+
+        /// <summary>
+        /// Loads the requested tenants from argument database.
+        /// Allows for custom filtering
+        /// </summary>
+        /// <returns></returns>
+        protected IEnumerable<DatabaseTenant> GetDatabaseTenants(OpenEdge.Database.Database db, string tempDir = null, bool isSingleUser = false, string tenantName = "*")
+        {
+            // Use a cumstom procedure to get the tables in the database
+            // This procedure will return all (non VST) tables in the database.
+            // It is up to this method to apply filtering.
+            var tenants = this.CustomProcedure<DatabaseTenantJson>(db, "DumpTenants.p", tempDir, isSingleUser);
+
+            // Initialize the wildcard pattern.
+            if (!tenantName.EndsWith("*"))
+                tenantName = tenantName + "*";
+
+            var wildcard = new WildcardPattern(tenantName);
+
+            // Loop the tables, assign the databbase, and yield each table.
+            foreach (var tenant in tenants.Tenants)
+            {
+                tenant.Database = db;
+
+                if (!wildcard.IsMatch(tenant.Name))
+                    continue;
+
+                yield return tenant;
             }
         }
 

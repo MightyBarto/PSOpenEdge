@@ -147,7 +147,7 @@ namespace PSOpenEdge.Cmdlets.Database
             tempDir = string.IsNullOrWhiteSpace(tempDir)
                         ? OeEnvironment.WRK
                         : tempDir;
-            var dumpFile = System.IO.Path.Combine(tempDir, $"{guid}.{db.Name}.tables.json");
+            var dumpFile = System.IO.Path.Combine(tempDir, $"{guid}.{db.Name}.json");
 
             try
             {
@@ -159,7 +159,7 @@ namespace PSOpenEdge.Cmdlets.Database
 
                 // Run custom procedure. Which will dump data in a file according to the guid.
                 // will save as follows: <temp>\<guid>.<dbname>.tables.json                
-                new OeCommand(command, path, isSilent: true).Run($"-db {db.Name} -p {ablProc} -param \"{guid}\" -T {tempDir}");
+                new OeCommand(command, path, isSilent: !this.MyInvocation.BoundParameters.ContainsKey("Verbose")).Run($"-db {db.Name} -p {ablProc} -param \"{guid}\" -T {tempDir}");
 
                 // Read the generated file into an object    
                 // The file where the .p will dump the tables                
